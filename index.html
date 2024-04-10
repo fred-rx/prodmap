@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>Document</title>
+    <title>Prod'Map</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,16 +25,39 @@
     <div class="mobile">
 
         <header>
-            <img src="./images/prodmap.svg" alt="Icône de l'application">
+            <img src="./images/prodmap.svg" alt="Icône de l'application" class="app-icon">
             <h1>Prod'Map</h1>
         </header>
-        
+
+        <section class="container">
+
+            <nav><span id="menu" class="material-symbols-rounded">menu</span>
+                <div class="infos"><span id="info" class="material-symbols-rounded">info</span>
+                    <div class="items">
+                        <span>Prod'Map</span>
+                        <span>DevStackerX</span>
+                    </div>
+                </div>
+                <div class="settings"><span id="settings" class="material-symbols-rounded">settings</span>
+                    <div class="modes items">
+                        <span id="light-mode" class="material-symbols-rounded active">light_mode</span>
+                        <span id="dark-mode" class="material-symbols-rounded">dark_mode</span>
+                    </div>
+                </div>
+            </nav>
+
+            <main></main>
+
+        </section>
+
         <footer>
-            <span class="app">Prod'Map V-DEV</span>
-            <span class="dev">by DevStackerX © Avril 2024</span>
+            <span class="app-info">Prod'Map V-DEV</span>
+            <span class="dev-info">DevStackerX © Avril 2024</span>
         </footer>
 
     </div>
+
+    <script src="./scripts/navbar.js"></script>
 
 </body>
 

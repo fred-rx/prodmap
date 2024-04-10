@@ -1,18 +1,21 @@
 :root {
     --primary-color: #009B4D;
     --secondary-color: #FFCC00;
+    --background-image: url('../images/background.svg');
     --font-text: 'Sawarabi Gothic', sans-serif;
     --font-code: 'Inconsolata', monospace;
-    --outset-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    --outset-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .light-mode {
     --brightness-color: #FAF5E9;
+    --brightness-opacity: rgba(250, 245, 233, 0.5);
     --text-color: #000;
 }
 
 .dark-mode {
     --brightness-color: #050A16;
+    --brightness-opacity: rgba(5, 10, 22, 0.5);
     --text-color: #fff;
 }
 
@@ -33,18 +36,19 @@ body {
     align-items: center;
 }
 
-div.mobile {
+.mobile {
     width: 450px;
     height: 850px;
-    background: url("../images/background.svg");
-    background-repeat: no-repeat;
+    color: var(--text-color);
+    background: var(--background-image);
     background-position: 50%;
+    background-repeat: no-repeat;
     background-size: auto 100%;
     border-radius: 10px;
     box-shadow: var(--outset-shadow);
     overflow: hidden;
     display: grid;
-    grid-template: 100px 1fr 50px / 1fr 50px;
+    grid-template-rows: 75px 1fr 50px;
     gap: 10px;
     position: relative;
 }
@@ -52,31 +56,151 @@ div.mobile {
 /* HEADER PART */
 
 header {
+    grid-row: 1 / 2;
     padding: 10px;
-    grid-area: 1 / 1 / 2 / 3;
     background: var(--brightness-color);
     box-shadow: var(--outset-shadow);
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    z-index: 2;
 }
 
-header > img {
-    height: 32px;
+.app-icon {
+    height: 36px;
     margin-right: 10px;
 }
 
-header > h1 {
-    margin-top: -2px;
-    font-size: 20px;
-    color: var(--text-color);
+h1 {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* NAV PART */
+
+nav {
+    grid-area: 1 / 2 / 2 / 3;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 3;
+}
+
+nav.active {
+    animation: displayMenu 0.4s ease-in-out forwards;
+}
+
+nav > span.material-symbols-rounded {
+    margin: 0 10px;
+    position: absolute;
+    inset: 22.5px 10px auto auto;
+}
+
+nav > div > span.material-symbols-rounded {
+    font-size: 0;
+    transform: scale(0);
+}
+
+nav.active > div > span.material-symbols-rounded {
+    animation: showIcons 0.4s ease-in-out forwards;
+}
+
+nav > .active {
+    position: relative;
+}
+
+span.material-symbols-rounded {
+    padding: 3px;
+    cursor: pointer;
+}
+
+span.material-symbols-rounded:hover,
+.active > span.material-symbols-rounded,
+span.material-symbols-rounded.active {
+    color: var(--secondary-color);
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.items {
+    padding: 10px;
+    position: absolute;
+    inset: 0 50px auto auto;
+    background: var(--brightness-opacity);
+    border-radius: 10px;
+    box-shadow: var(--outset-shadow);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+nav > div.active > .items {
+    display: flex;
+}
+
+.items > span {
+    line-height: 24px;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+
+.items > span:hover {
+    color: var(--secondary-color);
+    background: var(--primary-color);
+}
+
+@keyframes displayMenu {
+    from {
+        width: 0;
+        margin: 0;
+        padding: 0;
+        color: transparent;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    to {
+        width: 50px;
+        margin: 0 10px;
+        padding: 10px;
+        color: var(--text-color);
+        background: var(--brightness-opacity);
+        box-shadow: var(--outset-shadow);
+        border-radius: 10px;
+    }
+}
+
+@keyframes showIcons {
+    0%, 50% {
+        font-size: 0;
+        transform: scale(0);
+    }
+    100% {
+        font-size: 24px;
+        transform: scale(1);
+    }
+}
+
+/* MAIN PART */
+
+.container {
+    display: grid;
+    grid-template: 100% / 1fr auto;
+}
+
+main {
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 /* FOOTER PART */
 
 footer {
+    grid-row: 3 / 4;
     padding: 10px;
-    grid-area: 3 / 1 / 4 / 3;
     font-size: 10px;
     background: var(--brightness-color);
     box-shadow: var(--outset-shadow);
@@ -84,4 +208,5 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
